@@ -62,7 +62,7 @@ eps = 0.01
 current_color = [0.0, 0.0, 0.0]
 current_number = "0"
 
-pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+pytesseract.pytesseract.tesseract_cmd = r'tesseract\tesseract.exe'
 
 # You should insert a getDevice-like function in order to get the
 # instance of a device of the robot. Something like:
