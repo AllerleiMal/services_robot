@@ -1,0 +1,105 @@
+#VRML_SIM R2022b utf8
+
+PROTO Building [
+  field SFVec3f    translation  0 0 0
+  field SFRotation rotation 0 0 0 0
+  field MFColor recognitionColors 1 0 0
+  field SFColor baseColor 1 0 0
+  field MFString url "D:\\3 course\\ASP\\lab5\\robot\\e-puck\\numbers\\1.jpg"
+  field SFString name "house"
+]
+{
+  Solid {
+  translation IS translation
+  rotation IS rotation
+  children [
+    DEF number1 Solid {
+      translation 0.15 0.0 -0.15
+      children [
+        Shape {
+          appearance Appearance {
+            material Material {
+            }
+            texture ImageTexture {
+              url IS url
+            }
+          }
+          geometry Box {
+            size 0.0001 0.1 0.1
+          }
+        }
+      ]
+      recognitionColors IS recognitionColors
+    }
+    DEF number2 Solid {
+      translation 0.0 0.15 -0.15
+      children [
+        Shape {
+          appearance Appearance {
+            material Material {
+            }
+            texture ImageTexture {
+              url IS url
+            }
+          }
+          geometry Box {
+            size 0.1 0.0001 0.1
+          }
+        }
+      ]
+      recognitionColors IS recognitionColors
+    }
+    DEF number3 Solid {
+      translation 0.0 -0.15 -0.15
+      children [
+        Shape {
+          appearance Appearance {
+            material Material {
+            }
+            texture ImageTexture {
+              url IS url
+            }
+          }
+          geometry Box {
+            size 0.1 0.0001 0.1
+          }
+        }
+      ]
+      recognitionColors IS recognitionColors
+    }
+    DEF number4 Solid {
+      translation -0.15 0.0 -0.15
+      children [
+        Shape {
+          appearance Appearance {
+            material Material {
+            }
+            texture ImageTexture {
+              url IS url
+            }
+          }
+          geometry Box {
+            size 0.0001 0.1 0.1
+          }
+        }
+      ]
+      recognitionColors IS recognitionColors
+    }
+    Shape {
+      appearance PBRAppearance {
+        baseColor IS baseColor
+        roughness 1
+        metalness 0
+      }
+      geometry Box {
+        size 0.3 0.3 0.6
+      }
+    }
+  ]
+  name IS name
+  boundingObject Box {
+    size 0.29 0.29 0.59
+  }
+  recognitionColors IS recognitionColors
+}
+}

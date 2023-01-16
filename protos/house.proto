@@ -1,0 +1,52 @@
+#VRML_SIM R2023a utf8
+
+PROTO house[
+  field SFVec3f    translation  0 0 0
+  field SFRotation rotation 0 0 1 0
+  field MFColor recognitionColors 1 0 0
+  field SFColor baseColor 1 0 0
+  field MFString url "C:\\Users\\deadd\\OneDrive\\Изображения\\4.jpg"
+  field SFString name "house"
+]
+{
+  Solid {
+  translation IS translation
+  rotation IS rotation
+  children [
+    DEF number Solid {
+      translation -0.0564772 0.05 0.0008241
+      rotation 2.3463999999870816e-06 0.9999999999944944 2.3463999999870816e-06 1.57081
+      children [
+        Shape {
+          appearance Appearance {
+            material Material {
+            }
+            texture ImageTexture {
+              url IS url
+            }
+          }
+          geometry Box {
+            size 0.1 0.1 0.0001
+          }
+        }
+      ]
+      recognitionColors IS recognitionColors
+    }
+    Shape {
+      appearance PBRAppearance {
+        baseColor IS baseColor
+        roughness 1
+        metalness 0
+      }
+      geometry Box {
+        size 0.1 0.4 0.1
+      }
+    }
+  ]
+  name IS name
+  boundingObject Box {
+    size 0.09 0.39 0.09
+  }
+  recognitionColors IS recognitionColors
+}
+}
