@@ -50,19 +50,19 @@ leftMotor.setVelocity(0)
 rightMotor.setVelocity(0)
 
 word_to_color = {
-    'blue': [0.0, 0.0, 1.0],
+    'blu': [0.0, 0.0, 1.0],
     'red': [1.0, 0.0, 0.0],
-    'green': [0.0, 1.0, 0.0],
-    'yellow': [1.0, 1.0, 0.0],
-    'purple': [1.0, 0.0, 1.0]
+    'gre': [0.0, 1.0, 0.0],
+    'yel': [1.0, 1.0, 0.0],
+    'pur': [1.0, 0.0, 1.0]
 }
 
-eps = 0.01
+eps_min = 0.2
+eps_max = 2
+goal_color = [0.0, 0.0, 0.0]
+goal_number = "0"
 
-current_color = [0.0, 0.0, 0.0]
-current_number = "0"
-
-pytesseract.pytesseract.tesseract_cmd = r'tesseract\tesseract.exe'
+pytesseract.pytesseract.tesseract_cmd = r'..\..\tesseract\tesseract.exe'
 
 # You should insert a getDevice-like function in order to get the
 # instance of a device of the robot. Something like:
@@ -73,33 +73,41 @@ pytesseract.pytesseract.tesseract_cmd = r'tesseract\tesseract.exe'
 # Main loop:
 # - perform simulation steps until Webots is stopping the controller
 while robot.step(timestep) != -1:
+
     if receiver.getQueueLength() > 0:
         leftMotor.setVelocity(speed)
         rightMotor.setVelocity(speed)
         while receiver.getQueueLength() > 0:
-            message = receiver.getData();
-            message = message[0: message.find(0)]
-            message = message.decode("utf-8") 
+            message = receiver.getString()
             try:
-                current_color = word_to_color[message]
+                goal_color = word_to_color[message.replace('\0', '')]
             except KeyError as e:
-                current_number = message
+                goal_number = message
             receiver.nextPacket()
+    # print(current_color)
+    # print(current_number)
     if (speed < 0 and distance_censor1.getValue() > SENSOR_VALUE_DETECTION_THRESHOLD) or (speed > 0 and distance_censor2.getValue() > SENSOR_VALUE_DETECTION_THRESHOLD): 
         speed = -speed
         leftMotor.setVelocity(speed)
         rightMotor.setVelocity(speed)
     if camera.getRecognitionNumberOfObjects() > 0:
         object = camera.getRecognitionObjects()[0]
-        if object.get_colors() == current_color and abs(object.get_position()[0]) < eps:
-            camera.saveImage(r'C:\view.jpg', 100)
-            number = recognize(r'C:\view.jpg')
+        color_raw  = object.getColors()
+        current_color = [color_raw[0], color_raw[1], color_raw[2]]
+        if current_color == goal_color and eps_min <= abs(object.getPosition()[0]) <= eps_max:
+            camera.saveImage(r'view.jpg', 100)
+            number = recognize(r'view.jpg')
             number = number.strip()
-            print(number)
-            if number == current_number:
+            print("guess: " + number)
+            print("need: " + goal_number)
+            if len(number) > 0 and number[0] == goal_number[0]:
+                print("found!")
                 leftMotor.setVelocity(0)
                 rightMotor.setVelocity(0)
-                current_color = [0.0, 0.0, 0.0]
-                current_number = "0"
+                
+                goal_color = [0.0, 0.0, 0.0]
+                goal_number = "0"
+            else:
+                robot.step(300)
             
     pass

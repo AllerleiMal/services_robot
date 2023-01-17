@@ -12,6 +12,7 @@ def predict(img,custom_config):
     return pytesseract.image_to_string(img, config=custom_config)
 
 def recognize(path):
+	print("hello")
 	image = cv2.imread(path,0)
 	custom_config = r'--oem 3 --psm 6  outputbase digits'
 	pr_image = preprocess(image)
