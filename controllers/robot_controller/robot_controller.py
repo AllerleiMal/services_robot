@@ -21,7 +21,7 @@ def predict(img,custom_config):
 
 def recognize(path):
     image = cv2.imread(path,0)
-    custom_config = r'--oem 1 --psm 6  outputbase digits'
+    custom_config = r'--oem 3 --psm 6  outputbase digits'
     pr_image = preprocess(image)
     res = predict(pr_image, custom_config)
     return res
@@ -41,22 +41,12 @@ distance_censor2 = DistanceSensor("ps0")
 distance_censor1.enable(timestep)
 distance_censor2.enable(timestep)
 
-# нарочно перепутаны
-right_ir = DistanceSensor("distance sensor left")
-right_ir.enable(timestep)
-
-left_ir = DistanceSensor("distance sensor right")
-left_ir.enable(timestep)
-
 leftMotor = robot.getDevice('left wheel motor')
 rightMotor = robot.getDevice('right wheel motor')
 leftMotor.setPosition(float('inf'))
 rightMotor.setPosition(float('inf'))
 leftMotor.setVelocity(0)
 rightMotor.setVelocity(0)
-#camera_rotation = robot.getDevice("camera_rotation2")
-#camera_rotation.setPosition(float('inf'))
-#camera_rotation.setVelocity(-0.3)
 
 speed = 0.5 * MAX_SPEED
 
@@ -74,16 +64,6 @@ goal_color = [0.0, 0.0, 0.0]
 goal_number = "0"
 
 pytesseract.pytesseract.tesseract_cmd = r'..\..\tesseract\tesseract.exe'
-# pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
-
-# You should insert a getDevice-like function in order to get the
-# instance of a device of the robot. Something like:
-#  motor = robot.getDevice('motorname')
-#  ds = robot.getDevice('dsname')
-#  ds.enable(timestep)
-
-# Main loop:
-# - perform simulation steps until Webots is stopping the controller
 
 left_speed = speed
 right_speed = speed * 0.93
@@ -91,20 +71,21 @@ right_speed = speed * 0.93
 leftMotor.setVelocity(left_speed)
 rightMotor.setVelocity(right_speed)
 
+robot.step(5000)
+if receiver.getQueueLength() > 0:
+    print("hello")
+    while receiver.getQueueLength() > 0:
+        message = receiver.getString()
+        try:
+            goal_color = word_to_color[message.replace('\0', '')]
+        except KeyError as e:
+            goal_number = message
+        receiver.nextPacket()
+            
+print("Goal color: " + str(goal_color))
+print("Goal number: " + goal_number)
+       
 while robot.step(timestep) != -1:
-    left_ir_value = left_ir.getValue()
-    right_ir_value = right_ir.getValue()
-    
-    if receiver.getQueueLength() > 0:
-        while receiver.getQueueLength() > 0:
-            message = receiver.getString()
-            try:
-                goal_color = word_to_color[message.replace('\0', '')]
-            except KeyError as e:
-                goal_number = message
-            receiver.nextPacket()
-    # print(current_color)
-    # print(current_number)
     if (speed < 0 and distance_censor1.getValue() > SENSOR_VALUE_DETECTION_THRESHOLD) or (speed > 0 and distance_censor2.getValue() > SENSOR_VALUE_DETECTION_THRESHOLD): 
         left_speed = -left_speed
         right_speed = -right_speed
@@ -134,4 +115,3 @@ while robot.step(timestep) != -1:
                 goal_number = "0"
             else:
                 robot.step(200)
-        
