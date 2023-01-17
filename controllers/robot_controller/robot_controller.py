@@ -29,7 +29,7 @@ def recognize(path):
 # create the Robot instance.
 robot = Robot()
 timestep = int(robot.getBasicTimeStep())
-camera = Camera("camera")
+camera = Camera("camera(1)")
 camera.enable(timestep);
 camera.recognitionEnable(timestep)
 receiver = Receiver("receiver")
@@ -43,6 +43,9 @@ leftMotor = robot.getDevice('left wheel motor')
 rightMotor = robot.getDevice('right wheel motor')
 leftMotor.setPosition(float('inf'))
 rightMotor.setPosition(float('inf'))
+camera_rotation = robot.getDevice("camera_rotation2")
+camera_rotation.setPosition(float('inf'))
+camera_rotation.setVelocity(-0.05)
 
 speed = -0.5 * MAX_SPEED
 
@@ -62,7 +65,8 @@ eps_max = 2
 goal_color = [0.0, 0.0, 0.0]
 goal_number = "0"
 
-pytesseract.pytesseract.tesseract_cmd = r'..\..\tesseract\tesseract.exe'
+# pytesseract.pytesseract.tesseract_cmd = r'..\..\tesseract\tesseract.exe'
+pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
 # You should insert a getDevice-like function in order to get the
 # instance of a device of the robot. Something like:
@@ -73,7 +77,6 @@ pytesseract.pytesseract.tesseract_cmd = r'..\..\tesseract\tesseract.exe'
 # Main loop:
 # - perform simulation steps until Webots is stopping the controller
 while robot.step(timestep) != -1:
-
     if receiver.getQueueLength() > 0:
         leftMotor.setVelocity(speed)
         rightMotor.setVelocity(speed)

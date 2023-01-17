@@ -8,8 +8,8 @@ EXTERNPROTO "../protos/Building.proto"
 WorldInfo {
 }
 Viewpoint {
-  orientation 0.13221905144805296 0.4878111009449993 -0.8628780054150209 0.608716655037619
-  position -4.179642821135621 2.8683678596031714 1.1348356297236255
+  orientation -0.07178543176549405 0.15016110996767423 0.9860519726867939 0.9028573689528606
+  position -2.0802049437786003 -2.0962199336857172 0.08081642325715775
   follow "e-puck"
 }
 TexturedBackground {
@@ -22,21 +22,21 @@ RectangleArena {
   floorSize 5 5
 }
 Building {
-  translation -0.169572 -0.41374 0.3
-  rotation 0 0 -1 -0.261795307179586
+  translation 0.0719106 -0.34904 0.3
+  rotation 0 0 1 -0.5236053071795865
   url [
-    "../../../lab5/robot/e-puck/5.jpg"
+    "../5.jpg"
   ]
   name "house(1)"
 }
 Building {
-  translation -0.5 1.57 0.3
+  translation -0.5 -0.24 0.3
   recognitionColors [
     0 1 0
   ]
   baseColor 0 1 0
   url [
-    "../../../lab5/robot/e-puck/5.jpg"
+    "../5.jpg"
   ]
   name "house(2)"
 }
@@ -65,12 +65,56 @@ DEF speaker Robot {
   controller "speaker_controller"
 }
 DEF custom_e_puck Robot {
-  translation -0.449108910097385 1.2900137111737489 -6.206210862252405e-05
-  rotation 0.9989738316426557 0.03244331921027419 0.03160244819331573 1.5727626912435766
+  translation -1.915215463051303 -1.9368559221926382 -2.741122589689643e-05
+  rotation 0.2836653238927367 0.6780795897070452 0.6780428113648533 2.5906586905993727
   children [
+    Hinge2Joint {
+      jointParameters HingeJointParameters {
+        axis 0 1 0
+        suspensionAxis 0 2 0
+      }
+      jointParameters2 JointParameters {
+        position -31.476799999996796
+        axis 0 2 0
+      }
+      device [
+        RotationalMotor {
+          name "camera_rotation"
+          consumptionFactor -0.001
+        }
+      ]
+      device2 [
+        RotationalMotor {
+          name "camera_rotation2"
+          consumptionFactor -0.001
+        }
+      ]
+      endPoint Camera {
+        translation 0 0.06 0
+        rotation 0.5539246929319667 0.5887136122768974 0.5887136122768974 4.1532954864057485
+        children [
+          Shape {
+            appearance PBRAppearance {
+            }
+            geometry Sphere {
+              radius 0.005
+            }
+          }
+        ]
+        name "camera(1)"
+        fieldOfView 0.84
+        width 1080
+        height 1080
+        near 0.0055
+        zoom Zoom {
+        }
+        recognition Recognition {
+        }
+      }
+    }
     HingeJoint {
       jointParameters HingeJointParameters {
-        position 973.927529856346
+        position 874.2514401022112
         axis -1 0 0
         anchor 0 0.02 0
       }
@@ -86,8 +130,8 @@ DEF custom_e_puck Robot {
         }
       ]
       endPoint DEF EPUCK_LEFT_WHEEL Solid {
-        translation -0.026011895393187438 0.019979511104387677 2.3989303545393868e-05
-        rotation 0.7061843917983764 -0.03961414917188739 -0.7069188948993688 3.0626311793765195
+        translation -0.026011895393187212 0.020004652542869227 3.1203130818169305e-05
+        rotation 0.6625396748909343 -0.34815302202382825 -0.663197295268226 2.4723042788316425
         children [
           DEF EPUCK_WHEEL Transform {
             rotation 0 0 1 1.57
@@ -181,13 +225,11 @@ DEF custom_e_puck Robot {
           density -1
           mass 0.005
         }
-        linearVelocity 0.004155613438627029 -0.06242480007693105 -6.9823812931513e-07
-        angularVelocity 3.1212664440708826 0.20781300475086933 -0.0010231991443530532
       }
     }
     HingeJoint {
       jointParameters HingeJointParameters {
-        position 1214.026669412862
+        position 1114.3505820233368
         axis -1 0 0
         anchor 0 0.02 0
       }
@@ -203,8 +245,8 @@ DEF custom_e_puck Robot {
         }
       ]
       endPoint DEF EPUCK_RIGHT_WHEEL Solid {
-        translation 0.02607979586041707 0.020020023331080935 -9.568658633755698e-05
-        rotation -0.5962002807229697 0.5319480646857897 0.6013122996770437 4.114624526273227
+        translation 0.026079795860416838 0.01994094690662645 -7.790756545757304e-05
+        rotation -0.37354755427956615 0.8473349164875724 0.37747286524034185 4.540908413565431
         children [
           Transform {
             rotation 0 1 0 3.14159
@@ -216,8 +258,6 @@ DEF custom_e_puck Robot {
         name "right wheel"
         boundingObject USE EPUCK_WHEEL_BOUNDING_OBJECT
         physics USE EPUCK_WHEEL_PHYSICS
-        linearVelocity 0.004158722835312539 -0.062479853435324494 2.4493374448613295e-07
-        angularVelocity 3.121266474096407 0.20781293539766527 -0.0010230403113505467
       }
     }
     DEF BATTERY_CONNECTOR Transform {
@@ -1265,6 +1305,7 @@ DEF custom_e_puck Robot {
               ]
             }
           ]
+          translationStep 0.15
         }
       ]
       fieldOfView 0.84
@@ -1620,6 +1661,4 @@ DEF custom_e_puck Robot {
   cpuConsumption 1.11
   window "e-puck"
   remoteControl "e-puck_bluetooth"
-  linearVelocity 0.00412423416624664 -0.06251965242385571 -0.000114235365723232
-  angularVelocity -0.012282875914552578 0.006656470473702133 0.0011638225098954116
 }
