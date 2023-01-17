@@ -22,8 +22,8 @@ int main(int argc, char **argv) {
   while (wb_robot_step(BIG_TIME_STEP) != -1) {
     // char* color = colors[rand() % 5];
     // char* number = numbers[rand() % 9];
-    char* color = colors[0];
-    char* number = numbers[4];
+    char* color = colors[1];
+    char* number = numbers[2];
 
     wb_speaker_speak(speaker, color, 1.0);
     wb_robot_step(SMALL_TIME_STEP);

@@ -5,7 +5,7 @@ PROTO Building [
   field SFRotation rotation 0 0 0 0
   field MFColor recognitionColors 1 0 0
   field SFColor baseColor 1 0 0
-  field MFString url "D:\\3 course\\ASP\\lab5\\robot\\e-puck\\1.jpg"
+  field MFString url "..\\numbers\\1.jpg"
   field SFString name "house"
 ]
 {

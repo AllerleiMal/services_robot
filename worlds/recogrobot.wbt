@@ -4,12 +4,13 @@ EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/project
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
 EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/objects/floors/protos/RectangleArena.proto"
 EXTERNPROTO "../protos/Building.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023a/projects/appearances/protos/Parquetry.proto"
 
 WorldInfo {
 }
 Viewpoint {
-  orientation 0.13221905144805296 0.4878111009449993 -0.8628780054150209 0.608716655037619
-  position -4.179642821135621 2.8683678596031714 1.1348356297236255
+  orientation 0.18237666119891272 -0.4290069247813236 -0.8846987125228616 5.387303700040821
+  position -4.359446362406164 -6.787758099956068 2.928892351966163
   follow "e-puck"
 }
 TexturedBackground {
@@ -20,25 +21,152 @@ RectangleArena {
   translation -0.01 0 0
   rotation 0 1 0 4.692820414042842e-06
   floorSize 5 5
+  floorAppearance Parquetry {
+    type "light strip"
+  }
 }
 Building {
-  translation -0.169572 -0.41374 0.3
-  rotation 0 0 -1 -0.261795307179586
+  translation 0.034411 -2.22003 0.3
+  rotation 0.004519610240522382 0.0012110200644474664 0.9999890532169226 -5.307179586466759e-06
   url [
-    "../../../lab5/robot/e-puck/5.jpg"
+    "../numbers/7.jpg"
   ]
   name "house(1)"
 }
 Building {
-  translation -0.5 1.57 0.3
+  translation -1.26559 -1.93003 0.3
+  rotation 4.15452e-08 2.39861e-08 1 -0.5236053071795865
+  recognitionColors [
+    0 0 1
+  ]
+  baseColor 0 0 1
+  url [
+    "../numbers/3.jpg"
+  ]
+  name "house(28)"
+}
+Building {
+  translation 2.26392 0.269954 0.3
+  rotation 0 0 1 -1.5708053071795867
   recognitionColors [
     0 1 0
   ]
   baseColor 0 1 0
   url [
-    "../../../lab5/robot/e-puck/5.jpg"
+    "../numbers/1.jpg"
   ]
-  name "house(2)"
+  name "house(3)"
+}
+Building {
+  translation 2.26392 -0.690046 0.3
+  rotation 0 0 1 -1.8326053071795858
+  recognitionColors [
+    1 0 1
+  ]
+  baseColor 1 0 1
+  url [
+    "../numbers/1.jpg"
+  ]
+  name "house(6)"
+}
+Building {
+  translation 1.82392 -1.50005 0.3
+  rotation -9.58959e-09 2.31516e-08 -1 0.785407
+  url [
+    "../numbers/1.jpg"
+  ]
+  name "house(7)"
+}
+Building {
+  translation 1.94225 1.22399 0.3
+  rotation 0 0 -1 -0.523595307179586
+  url [
+    "../numbers/2.jpg"
+  ]
+  name "house(9)"
+}
+Building {
+  translation 1.18875 1.93753 0.3
+  rotation 0 0 1 1.04719
+  recognitionColors [
+    1 1 0
+  ]
+  baseColor 1 1 0
+  url [
+    "../numbers/3.jpg"
+  ]
+  name "house(11)"
+}
+Building {
+  translation 0.18627 2.10723 0.3
+  rotation 0 0 1 1.57079
+  recognitionColors [
+    1 0 1
+  ]
+  baseColor 1 0 1
+  url [
+    "../numbers/2.jpg"
+  ]
+  name "house(13)"
+}
+Building {
+  translation -1.06965 1.84615 0.3
+  rotation 0 0 1 2.09439
+  recognitionColors [
+    0 0 1
+  ]
+  baseColor 0 0 1
+  url [
+    "../numbers/1.jpg"
+  ]
+  name "house(16)"
+}
+Building {
+  translation -1.87049 0.98329 0.3
+  rotation 0 0 -1 -1.047195307179586
+  recognitionColors [
+    0 1 0
+  ]
+  baseColor 0 1 0
+  url [
+    "../numbers/3.jpg"
+  ]
+  name "house(17)"
+}
+Building {
+  translation -1.98647 -1.14945 0.3
+  rotation 0 0 1 0.523593
+  recognitionColors [
+    1 0 1
+  ]
+  baseColor 1 0 1
+  url [
+    "../numbers/3.jpg"
+  ]
+  name "house(21)"
+}
+Building {
+  translation 1.17468 -2.01641 0.3
+  rotation 0 0 1 0.523595
+  recognitionColors [
+    1 1 0
+  ]
+  baseColor 1 1 0
+  url [
+    "../numbers/1.jpg"
+  ]
+  name "house(4)"
+}
+Building {
+  translation -2.04 0 0.3
+  recognitionColors [
+    1 1 0
+  ]
+  baseColor 1 1 0
+  url [
+    "../numbers/7.jpg"
+  ]
+  name "house(22)"
 }
 DEF speaker Robot {
   translation -0.42 0.14 0.73
@@ -65,12 +193,57 @@ DEF speaker Robot {
   controller "speaker_controller"
 }
 DEF custom_e_puck Robot {
-  translation -0.449108910097385 1.2900137111737489 -6.206210862252405e-05
-  rotation 0.9989738316426557 0.03244331921027419 0.03160244819331573 1.5727626912435766
+  translation 1.1815500983622798 0.546344256685432 -0.0004996736716626517
+  rotation 0.17530497646497964 -0.6962090146476625 -0.6961042832434978 2.795235644006995
+  scale 1.8 1.8 1.8
   children [
+    Hinge2Joint {
+      jointParameters HingeJointParameters {
+        axis 0 1 0
+        suspensionAxis 0 2 0
+      }
+      jointParameters2 JointParameters {
+        position -31.476799999996796
+        axis 0 2 0
+      }
+      device [
+        RotationalMotor {
+          name "camera_rotation"
+          consumptionFactor -0.001
+        }
+      ]
+      device2 [
+        RotationalMotor {
+          name "camera_rotation2"
+          consumptionFactor -0.001
+        }
+      ]
+      endPoint Camera {
+        translation -0.013 0.053 0
+        rotation -0.021523799090980674 0.7069439701434804 0.7069419701435649 3.09855
+        children [
+          Shape {
+            appearance PBRAppearance {
+            }
+            geometry Sphere {
+              radius 0.005
+            }
+          }
+        ]
+        name "camera(1)"
+        fieldOfView 0.84
+        width 1080
+        height 1080
+        near 0.0055
+        zoom Zoom {
+        }
+        recognition Recognition {
+        }
+      }
+    }
     HingeJoint {
       jointParameters HingeJointParameters {
-        position 973.927529856346
+        position 1880.7578701951293
         axis -1 0 0
         anchor 0 0.02 0
       }
@@ -86,8 +259,8 @@ DEF custom_e_puck Robot {
         }
       ]
       endPoint DEF EPUCK_LEFT_WHEEL Solid {
-        translation -0.026011895393187438 0.019979511104387677 2.3989303545393868e-05
-        rotation 0.7061843917983764 -0.03961414917188739 -0.7069188948993688 3.0626311793765195
+        translation -0.026246599999999985 0.020047625657515222 -3.74720795558932e-05
+        rotation 0.6536741590311904 -0.38817875898697346 -0.649636317400897 2.409171419107368
         children [
           DEF EPUCK_WHEEL Transform {
             rotation 0 0 1 1.57
@@ -181,13 +354,13 @@ DEF custom_e_puck Robot {
           density -1
           mass 0.005
         }
-        linearVelocity 0.004155613438627029 -0.06242480007693105 -6.9823812931513e-07
-        angularVelocity 3.1212664440708826 0.20781300475086933 -0.0010231991443530532
+        linearVelocity 0.052442599939935025 -0.09735115417939819 2.976978961469578e-06
+        angularVelocity 2.7137260777498686 1.4617656406475386 -0.07819722656955325
       }
     }
     HingeJoint {
       jointParameters HingeJointParameters {
-        position 1214.026669412862
+        position 2049.261247770492
         axis -1 0 0
         anchor 0 0.02 0
       }
@@ -203,8 +376,8 @@ DEF custom_e_puck Robot {
         }
       ]
       endPoint DEF EPUCK_RIGHT_WHEEL Solid {
-        translation 0.02607979586041707 0.020020023331080935 -9.568658633755698e-05
-        rotation -0.5962002807229697 0.5319480646857897 0.6013122996770437 4.114624526273227
+        translation 0.026293899999999978 0.02007992897450361 -2.8624622876137996e-05
+        rotation 0.6919644450557794 -0.1869373741969852 -0.6973088447072671 2.7648430249185796
         children [
           Transform {
             rotation 0 1 0 3.14159
@@ -216,8 +389,8 @@ DEF custom_e_puck Robot {
         name "right wheel"
         boundingObject USE EPUCK_WHEEL_BOUNDING_OBJECT
         physics USE EPUCK_WHEEL_PHYSICS
-        linearVelocity 0.004158722835312539 -0.062479853435324494 2.4493374448613295e-07
-        angularVelocity 3.121266474096407 0.20781293539766527 -0.0010230403113505467
+        linearVelocity 0.04900289212007477 -0.09097834952962516 2.7597536799027165e-06
+        angularVelocity 2.5202832016428123 1.3574020160850877 -0.07811692078918116
       }
     }
     DEF BATTERY_CONNECTOR Transform {
@@ -1234,50 +1407,6 @@ DEF custom_e_puck Robot {
         2 0 0.01
       ]
     }
-    DEF EPUCK_CAMERA Camera {
-      translation -3.0947e-07 0.028 0.032
-      rotation 0.5773509358560258 0.577349935856137 0.577349935856137 -2.094395307179586
-      children [
-        Transform {
-          rotation 0 0.7071067811865476 0.7071067811865476 3.14159
-          children [
-            Transform {
-              rotation 1 0 0 0
-              children [
-                Shape {
-                  appearance PBRAppearance {
-                    baseColor 0 0 0
-                    roughness 0.4
-                    metalness 0
-                  }
-                  geometry IndexedFaceSet {
-                    coord Coordinate {
-                      point [
-                        -0.003 -0.000175564 0.003, -0.003 -0.00247555 -0.003, -0.003 -0.00247555 -4.65661e-09, -0.003 -0.00247555 0.003, -0.003 -2.55639e-05 0.0035, -0.003 -2.55639e-05 -0.003, -0.003 0.000427256 0.00574979, -0.003 -0.000175564 0.0035, -0.003 0.000557156 0.0056748, -0.003 0.00207465 0.00739718, -0.003 0.00214964 0.00726728, -0.003 0.00432444 0.008, -0.003 0.00432444 0.00785, -0.003 0.00757444 0.008, -0.003 0.00757444 0.0095, -0.003 0.0115744 0.0095, -0.003 0.0115744 0.008, -0.003 0.0128244 0.008, -0.003 0.0128244 0.00785, 0.003 -2.55639e-05 -0.003, 0.003 -0.000175564 0.0035, 0.003 -0.000175564 0.003, 0.003 -0.00247555 0.003, 0.003 -0.00247555 -4.65661e-09, 0.003 -0.00247555 -0.003, 0.003 -2.55639e-05 0.0035, 0.003 0.000427256 0.00574979, 0.003 0.000557156 0.0056748, 0.003 0.00207465 0.00739718, 0.003 0.00214964 0.00726728, 0.003 0.00432444 0.00785, 0.003 0.00432444 0.008, 0.003 0.0115744 0.0095, 0.003 0.00757444 0.0095, 0.003 0.0115744 0.008, 0.003 0.00757444 0.008, 0.003 0.0128244 0.00785, 0.003 0.0128244 0.008, 0 -0.00247555 -0.003, -0.00149971 -0.00247555 -0.0025982, 0.00149971 -0.00247555 -0.0025982, 0.00259801 -0.00247555 -0.00150004, -0.00259801 -0.00247555 -0.00150004, 0.00149971 -0.00247555 0.00259821, 0.00259801 -0.00247555 0.00150005, 0 -0.00247555 0.003, -0.00149971 -0.00247555 0.00259821, -0.00259801 -0.00247555 0.00150005, 0.00212127 -0.00377555 0.00212128, 0 -0.00377555 0.003, -0.00212127 -0.00377555 0.00212128, -0.0015 -0.00377555 0.002, -0.002 -0.00377555 0.0015, -0.003 -0.00377555 -4.65661e-09, 0.0015 -0.00377555 0.002, 0.002 -0.00377555 0.0015, 0.003 -0.00377555 -4.65661e-09, -0.002 -0.00377555 -0.0015, 0.002 -0.00377555 -0.0015, -0.00212127 -0.00377555 -0.0021213, 0.0015 -0.00377555 -0.002, -0.0015 -0.00377555 -0.002, 0.00212127 -0.00377555 -0.0021213, 0 -0.00377555 -0.003, -0.00256063 -0.00377555 0.00106064, -0.00106063 -0.00377555 0.00256064, 0.00106063 -0.00377555 0.00256064, 0.00256063 -0.00377555 0.00106064, 0.00256063 -0.00377555 -0.00106063, 0.00106063 -0.00377555 -0.0025606, -0.00106063 -0.00377555 -0.0025606, -0.00256063 -0.00377555 -0.00106063, 0.0015 -0.00417556 -0.002, 0.002 -0.00417556 -0.0015, -0.0015 -0.00417556 -0.002, -0.002 -0.00417556 -0.0015, 0.002 -0.00417556 0.0015, 0 -0.00417556 0.000245125, 0.00021198 -0.00417556 0.000122716, 0.00021198 -0.00417556 -0.000122714, 0 -0.00417556 -0.000245124, -0.00021198 -0.00417556 -0.000122714, -0.00021198 -0.00417556 0.000122716, -0.002 -0.00417556 0.0015, 0.0015 -0.00417556 0.002, -0.0015 -0.00417556 0.002
-                      ]
-                    }
-                    coordIndex [
-                      33, 14, 35, -1, 13, 35, 14, -1, 15, 32, 16, -1, 34, 16, 32, -1, 14, 33, 15, -1, 32, 15, 33, -1, 72, 74, 60, -1, 61, 60, 74, -1, 74, 75, 61, -1, 57, 61, 75, -1, 75, 83, 57, -1, 52, 57, 83, -1, 83, 85, 52, -1, 51, 52, 85, -1, 85, 84, 51, -1, 54, 51, 84, -1, 84, 76, 54, -1, 55, 54, 76, -1, 76, 73, 55, -1, 58, 55, 73, -1, 73, 72, 58, -1, 60, 58, 72, -1, 72, 73, 74, -1, 75, 74, 73, -1, 76, 77, 78, -1, 76, 78, 79, -1, 79, 80, 75, -1, 79, 75, 73, -1, 73, 76, 79, -1, 75, 80, 81, -1, 75, 81, 82, -1, 82, 77, 76, -1, 82, 76, 83, -1, 83, 75, 82, -1, 76, 84, 83, -1, 85, 83, 84, -1, 56, 68, 23, -1, 41, 23, 68, -1, 68, 62, 41, -1, 40, 41, 62, -1, 62, 69, 40, -1, 40, 69, 63, -1, 38, 40, 63, -1, 63, 70, 38, -1, 39, 38, 70, -1, 70, 59, 39, -1, 42, 39, 59, -1, 59, 71, 42, -1, 42, 71, 53, -1, 2, 42, 53, -1, 53, 64, 2, -1, 47, 2, 64, -1, 64, 50, 47, -1, 46, 47, 50, -1, 50, 65, 46, -1, 46, 65, 49, -1, 45, 46, 49, -1, 49, 66, 45, -1, 43, 45, 66, -1, 66, 48, 43, -1, 44, 43, 48, -1, 48, 67, 44, -1, 44, 67, 56, -1, 23, 44, 56, -1, 48, 49, 50, -1, 51, 48, 50, -1, 52, 51, 50, -1, 50, 53, 52, -1, 48, 51, 54, -1, 48, 54, 55, -1, 56, 48, 55, -1, 57, 52, 53, -1, 55, 58, 56, -1, 59, 60, 61, -1, 59, 61, 57, -1, 53, 59, 57, -1, 60, 59, 62, -1, 58, 60, 62, -1, 62, 56, 58, -1, 59, 63, 62, -1, 0, 45, 22, -1, 21, 0, 22, -1, 45, 0, 3, -1, 38, 39, 1, -1, 40, 38, 24, -1, 41, 40, 24, -1, 24, 23, 41, -1, 1, 39, 42, -1, 2, 1, 42, -1, 22, 43, 44, -1, 23, 22, 44, -1, 45, 43, 22, -1, 46, 45, 3, -1, 47, 46, 3, -1, 3, 2, 47, -1, 20, 26, 7, -1, 6, 7, 26, -1, 26, 28, 6, -1, 9, 6, 28, -1, 28, 31, 9, -1, 11, 9, 31, -1, 31, 35, 11, -1, 13, 11, 35, -1, 34, 37, 16, -1, 17, 16, 37, -1, 36, 18, 37, -1, 17, 37, 18, -1, 36, 30, 18, -1, 12, 18, 30, -1, 4, 8, 25, -1, 27, 25, 8, -1, 8, 10, 27, -1, 29, 27, 10, -1, 10, 12, 29, -1, 30, 29, 12, -1, 25, 19, 4, -1, 5, 4, 19, -1, 24, 38, 19, -1, 19, 38, 1, -1, 5, 19, 1, -1, 20, 7, 21, -1, 0, 21, 7, -1, 19, 20, 21, -1, 19, 21, 22, -1, 19, 22, 23, -1, 24, 19, 23, -1, 20, 19, 25, -1, 26, 20, 25, -1, 25, 27, 26, -1, 28, 26, 27, -1, 27, 29, 28, -1, 28, 29, 30, -1, 31, 28, 30, -1, 32, 33, 34, -1, 34, 33, 35, -1, 36, 34, 35, -1, 36, 35, 31, -1, 30, 36, 31, -1, 37, 34, 36, -1, 0, 1, 2, -1, 3, 0, 2, -1, 0, 4, 5, -1, 1, 0, 5, -1, 4, 0, 6, -1, 6, 0, 7, -1, 8, 4, 6, -1, 6, 9, 8, -1, 10, 8, 9, -1, 9, 11, 10, -1, 12, 10, 11, -1, 11, 13, 12, -1, 14, 15, 13, -1, 13, 15, 16, -1, 12, 13, 16, -1, 12, 16, 17, -1, 18, 12, 17, -1
-                    ]
-                    creaseAngle 0.785398
-                  }
-                }
-              ]
-            }
-          ]
-        }
-      ]
-      fieldOfView 0.84
-      width 360
-      height 360
-      near 0.0055
-      zoom Zoom {
-      }
-      recognition Recognition {
-        maxObjects 1
-        segmentation TRUE
-      }
-    }
     DEF EPUCK_LED0 LED {
       translation 0 0.041 -0.0337
       children [
@@ -1577,6 +1706,20 @@ DEF custom_e_puck Robot {
     DEF GROUND_SENSOR_SLOT Transform {
       translation 0 0.0003 -0.03
       rotation 0 0 -1 1.57
+      children [
+        DistanceSensor {
+          translation -0.01 -0.02 0.03
+          rotation 0 0 1 1.01503e-06
+          name "distance sensor right"
+          type "infra-red"
+        }
+        DistanceSensor {
+          translation -0.01 0.02 0.03
+          rotation 0 0 1 1.01503e-06
+          name "distance sensor left"
+          type "infra-red"
+        }
+      ]
     }
   ]
   name "e-puck"
@@ -1596,7 +1739,7 @@ DEF custom_e_puck Robot {
         ]
       }
       Transform {
-        translation 0 0.0051 0
+        translation 0 0.0055 0
         children [
           Box {
             size 0.04 0.01 0.05
@@ -1620,6 +1763,31 @@ DEF custom_e_puck Robot {
   cpuConsumption 1.11
   window "e-puck"
   remoteControl "e-puck_bluetooth"
-  linearVelocity 0.00412423416624664 -0.06251965242385571 -0.000114235365723232
-  angularVelocity -0.012282875914552578 0.006656470473702133 0.0011638225098954116
+  linearVelocity 0.05080938244481999 -0.09430047090793993 0.0001474373529391518
+  angularVelocity -0.05033562131171115 -0.02805793206878206 -0.07799319057788552
+}
+Solid {
+  translation -47.6 10.8 -0.008
+  scale 0.9 0.9 0.9
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0 0 0
+        roughness 1
+        metalness 0
+      }
+      geometry Mesh {
+        url [
+          "../tinker.obj"
+        ]
+        materialIndex 1
+      }
+    }
+  ]
+  name "trajectory"
+  boundingObject Mesh {
+    url [
+      "../tinker.obj"
+    ]
+  }
 }
